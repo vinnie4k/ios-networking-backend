@@ -64,4 +64,16 @@ app.post("/", async (req, res) => {
   }
 });
 
+/**
+ * Delete all members in the roster
+ */
+app.delete("/delete/", async (req, res) => {
+  try {
+    await getDatabase().ref("/").remove();
+    return res.status(200).send("Successfully deleted all members from roster");
+  } catch (error) {
+    return res.status(400).send(error);
+  }
+});
+
 exports.iosCourse = onRequest({ region: "us-east1" }, app);
