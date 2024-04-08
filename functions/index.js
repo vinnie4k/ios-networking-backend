@@ -47,7 +47,7 @@ app.post("/", async (req, res) => {
 
   try {
     const snapshot = await getDatabase().ref("/").once("value");
-    const members = snapshot.val();
+    const members = snapshot.val() || [];
 
     const newMember = {
       name: name,
